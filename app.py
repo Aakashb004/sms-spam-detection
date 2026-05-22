@@ -45,10 +45,9 @@ if "example" not in st.session_state:
     st.session_state.example = ""
 if "history" not in st.session_state:
     st.session_state.history = []
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
 
-# Theme toggle (Streamlit UI dark mode relies on configuration, 
-# but we use this toggle to dynamically change the Matplotlib chart style!)
-dark_mode = st.toggle("🌙 Dark Mode", value=True)
 
 # Main title
 st.title("📩 SMS Spam Detection System")
@@ -129,7 +128,7 @@ if st.button("Predict"):
             st.subheader("📈 Confidence Visualization")
             
             # Match Matplotlib style with Dark Mode choice
-            if dark_mode:
+            if st.session_state.dark_mode:
                 plt.style.use('dark_background')
                 text_color = 'white'
             else:
